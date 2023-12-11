@@ -91,6 +91,15 @@ elif [ "${DNS_PROVIDER}" == "dns-cloudflare" ]; then
 
     PROVIDER_ARGUMENTS+=("--${DNS_PROVIDER}" "--${DNS_PROVIDER}-credentials" "/data/dnsapikey" "--dns-cloudflare-propagation-seconds" "${PROPAGATION_SECONDS}")
 
+# ClouDNS
+elif [ "${CHALLENGE}" == "dns" ] && "${DNS_PROVIDER}" == "dns-cloudns" ]; then
+    bashio::config.require 'dns.cloudns_auth_id'
+    bashio::config.require 'dns.cloudns_auth_password'
+    bashio::config.require 'dns.cloudns_nameserver'
+    CLOUDNS_NAMESERVER="$(bashio::config 'dns.cloudns_nameserver')"
+
+    PROVIDER_ARGUMENTS+=("--authenticator" "${DNS_PROVIDER}" "--${DNS_PROVIDER}-credentials" "/data/dnsapikey" "--${DNS_PROVIDER}-nameserver" "${CLOUDNS_NAMESERVER}" "--${DNS_PROVIDER}-propagation-seconds" "${PROPAGATION_SECONDS}")
+
 # DirectAdmin
 elif [ "${CHALLENGE}" == "dns" ] && [ "${DNS_PROVIDER}" == "dns-directadmin" ]; then
     bashio::config.require 'dns.directadmin_url'

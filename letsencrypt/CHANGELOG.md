@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.7
+
+- Add ClouDNS DNS challenge support
+
 ## 5.0.6
 
 - Add Infomaniak DNS challenge support

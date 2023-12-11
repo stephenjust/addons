@@ -6,7 +6,9 @@ mkdir -p /data/workdir
 mkdir -p /data/letsencrypt
 
 # Setup Let's encrypt config
-echo -e "dns_desec_token = $(bashio::config 'dns.desec_token')\n" \
+echo -e "dns_cloudns_auth_id = $(bashio::config 'dns.cloudns_auth_id')\n" \
+      "dns_cloudns_auth_password = $(bashio::config 'dns.cloudns_auth_password')\n" \
+      "dns_desec_token = $(bashio::config 'dns.desec_token')\n" \
       "dns_digitalocean_token = $(bashio::config 'dns.digitalocean_token')\n" \
       "dns_directadmin_url = $(bashio::config 'dns.directadmin_url')\n" \
       "dns_directadmin_username = $(bashio::config 'dns.directadmin_username')\n" \

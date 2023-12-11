@@ -561,6 +561,30 @@ on the DNS zone to be used for authentication.
 
 </details>
 
+<details>
+  <summary>ClouDNS</summary>
+
+  You need to log into your control panel and create a new HTTP API user from the "API & Resellers" page on top of your control panel.
+  Provide the id and password in your configuration.
+  `cloudns_nameserver` should point to one of your nameservers.
+
+  Example configuration:
+  ```yaml
+  email: your.email@example.com
+  domains:
+    - your.domain.tld
+  certfile: fullchain.pem
+  keyfile: privkey.pem
+  challenge: dns
+  dns:
+    provider: dns-cloudns
+    cloudns_auth_id: 1234
+    cloudns_auth_password: 'password1'
+    cloudns_nameserver: '123.123.123.123'
+  ```
+
+</details>
+
 ## Certificate files
 
 The certificate files will be available within the "ssl" share after successful request of the certificates.
@@ -573,6 +597,7 @@ You can in addition find the files via the "samba" addon within the "ssl" share.
 ```txt
 dns-azure
 dns-cloudflare
+dns-cloudns
 dns-desec
 dns-digitalocean
 dns-directadmin
